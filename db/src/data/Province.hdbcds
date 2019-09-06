@@ -1,0 +1,7 @@
+context Province {
+    entity Province_md {
+        key Country  : String(2);
+        key Province : String(3);
+            Name     : String(60);
+    };
+};

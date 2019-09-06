@@ -1,0 +1,14 @@
+{
+  "holiday": {
+    "target": {
+      "object": "ZRT_HOLIDAY",
+      "schema": "ZCONTROL_TABLES"
+    }
+  },
+  "holiday_id": {
+    "target": {
+      "object": "ZRT_HOLIDAY_ID",
+      "schema": "ZCONTROL_TABLES"
+    }
+  }
+}

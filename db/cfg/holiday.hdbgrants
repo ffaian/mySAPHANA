@@ -1,0 +1,20 @@
+{
+  "CROSS_SCHEMA_PRODUCTS": {
+    "object_owner" : {
+      "schema_privileges":[
+        {
+          "reference":"ZCONTROL_TABLES",
+          "privileges_with_grant_option":["SELECT", "DELETE", "INSERT", "UPDATE", "SELECT METADATA"]
+        }
+      ]
+    },
+    "application_user" : {
+      "schema_privileges":[
+        {
+          "reference":"ZCONTROL_TABLES",
+          "privileges_with_grant_option":["SELECT", "DELETE", "INSERT", "UPDATE", "SELECT METADATA"]
+        }
+      ]
+    }
+  }
+}

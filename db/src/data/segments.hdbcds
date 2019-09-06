@@ -1,0 +1,17 @@
+using holiday as T_HOLIDAY;
+using holiday_id as T_HOLIDAY_ID;
+
+context segments {
+    define view HolidayView as
+        select from T_HOLIDAY as A
+        join        T_HOLIDAY_ID as B on
+            A.HOLIDAY_ID = B.HOLIDAY_ID
+        {
+            "A"."DATE",
+            "A"."PROVINCE",
+            "A"."HOLIDAY_ID",
+            "B"."HOLIDAY_TXT"
+        }
+        where
+            "B"."LANGU" = 'EN';
+};
