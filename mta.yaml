@@ -1,0 +1,9 @@
+ID: mySAPHANA
+_schema-version: '2.1'
+description: SAP HANA XS Advanced Development
+version: 0.0.1
+
+modules:
+ - name: web
+   type: html5
+   path: web
