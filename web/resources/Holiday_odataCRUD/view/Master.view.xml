@@ -1,0 +1,82 @@
+<sap.ui.core.mvc:View controllerName="sapui5.holiday.App.Holiday.controller.Master"
+    xmlns="sap.m"
+    xmlns:sap.ui.core="sap.ui.core"
+    xmlns:sap.ui.core.mvc="sap.ui.core.mvc" >
+    <App id="myApp" initialPage="oPage">
+        <pages>
+            <Page id="mainPage">
+                <content>
+                    <Table id="mytable" mode="SingleSelectMaster" width="auto" noDataText="No&#x20;data" items="&#x7b;&#x2f;Holidays&#x7d;">
+                        <customData>
+                            <sap.ui.core:CustomData key="sap-ui-fastnavgroup" value="true" writeToDom="true"></sap.ui.core:CustomData>
+                        </customData>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <ObjectIdentifier text="&#x7b;DATE&#x7d;"></ObjectIdentifier>
+                                    <ObjectIdentifier text="&#x7b;PROVINCE&#x7d;"></ObjectIdentifier>
+                                    <ObjectIdentifier text="&#x7b;HOLIDAY_ID&#x7d;"></ObjectIdentifier>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                        <headerToolbar>
+                            <Toolbar>
+                                <customData>
+                                    <sap.ui.core:CustomData key="sap-ui-fastnavgroup" value="true" writeToDom="true"></sap.ui.core:CustomData>
+                                </customData>
+                                <content>
+                                    <Button text="Create" type="Transparent" icon="sap-icon&#x3a;&#x2f;&#x2f;add"></Button>
+                                    <Button text="Edit" type="Transparent" icon="sap-icon&#x3a;&#x2f;&#x2f;edit"></Button>
+                                    <Button text="Delete" type="Transparent" icon="sap-icon&#x3a;&#x2f;&#x2f;delete"></Button>
+                                    <ToolbarSpacer></ToolbarSpacer>
+                                    <Label text="Searching&#x20;by&#x3a;"></Label>
+                                    <Select id="mySearchCombo" selectedItem="Element sap.ui.core.ListItem#__item0-mySearchCombo-0" selectedKey="1" selectedItemId="__item0-mySearchCombo-0" items="&#x7b;&#x2f;&#x7d;">
+                                        <items>
+                                            <sap.ui.core:ListItem text="&#x7b;TXT&#x7d;" key="&#x7b;KEY&#x7d;"></sap.ui.core:ListItem>
+                                        </items>
+                                    </Select>
+                                    <Label></Label>
+                                    <SearchField width="300px" placeholder="Search" showRefreshButton="true" tooltip="Search&#x20;for&#x20;a&#x20;Date"></SearchField>
+                                </content>
+                            </Toolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column>
+                                <header>
+                                    <Text text="Date"></Text>
+                                </header>
+                            </Column>
+                            <Column>
+                                <header>
+                                    <Text text="Province"></Text>
+                                </header>
+                            </Column>
+                            <Column>
+                                <header>
+                                    <Text text="Holiday"></Text>
+                                </header>
+                            </Column>
+                        </columns>
+                    </Table>
+                </content>
+                <customHeader>
+                    <Bar class="sapContrastPlus">
+                        <customData>
+                            <sap.ui.core:CustomData key="sap-ui-fastnavgroup" value="true" writeToDom="true"></sap.ui.core:CustomData>
+                        </customData>
+                        <contentLeft>
+                            <Image src="..&#x2f;images&#x2f;favicon.ico" height="45px"></Image>
+                        </contentLeft>
+                        <contentMiddle>
+                            <Label design="Bold" text="CRUD&#x3a;&#x20;Holidays&#x20;Calendar" textAlign="Left"></Label>
+                        </contentMiddle>
+                        <contentRight>
+                            <Label id="myUserLabel" design="Bold" text="&#x7b;&#x2f;session&#x2f;0&#x2f;UserName&#x7d;"></Label>
+                            <Button type="Transparent" icon="sap-icon&#x3a;&#x2f;&#x2f;log" tooltip="Logout"></Button>
+                        </contentRight>
+                    </Bar>
+                </customHeader>
+            </Page>
+        </pages>
+    </App>
+</sap.ui.core.mvc:View>

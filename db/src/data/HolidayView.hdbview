@@ -1,0 +1,6 @@
+view "HolidayView" ("DATE", "PROVINCE", "HOLIDAY_ID") AS
+SELECT 
+	"DATE",
+	"PROVINCE",
+	"HOLIDAY_ID"
+FROM "holiday" 

@@ -10,6 +10,21 @@
 		"source": "(.*)(.xsodata)",
 		"destination": "core-xsjs-backend",
 		"authenticationType": "xsuaa"
+	}, {
+		"source": "/(.*)",
+		"localDir": "resources",
+		"authenticationType": "xsuaa",
+		"replace": {
+			"pathSuffixes": [
+				"index.html",
+				"odataTest.html"
+			],
+			"services": {
+				"sapui5_sb": {
+					"tag": "ui5"
+				}
+			}
+		}
 	}],
 	"logout": {
 		"logoutPage": "/logout.html",
