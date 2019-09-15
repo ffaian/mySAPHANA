@@ -1,0 +1,6 @@
+view "HolidayMDView" ("HOLIDAY_ID","HOLIDAY_TXT") AS
+SELECT 
+	"HOLIDAY_ID",
+	"HOLIDAY_TXT"
+FROM "holiday_id"
+

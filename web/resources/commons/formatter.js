@@ -47,7 +47,7 @@ sap.ui.define([], function() {
 		formatHoliday : function(sHoliday) {
 			var oHolidayComboBox = sap.ui.getCore().byId("myHolidayCombo");
 			var oData = oHolidayComboBox.getModel().getData();
-			var result = jQuery.grep(oData.Holidays, function(e) {
+			var result = jQuery.grep(oData.results, function(e) {
 				return e.HOLIDAY_ID === sHoliday;
 			});
 			if (result && result.length === 1) {

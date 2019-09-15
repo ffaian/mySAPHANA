@@ -19,6 +19,17 @@
 				"settings": {
 					"odataVersion": "2.0"
 				}
+			},
+			"HolidayMDService": {
+				"uri": "/xsodata/HolidayMD.xsodata/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "1.0"
+				}
+			},
+			"ProvinceMDService": {
+				"uri": "/xsjs/Province_md.xsjs",
+				"type": "JSON"
 			}
 		}
 	},
@@ -52,7 +63,8 @@
 		"rootView": {
 			"viewName": "opensap.odataBasic.view.App",
 			"type": "XML",
-			"id": "app"
+			"id": "app",
+			"async": true
 		},
 		"dependencies": {
 			"minUI5Version": "1.40.0",
@@ -94,7 +106,28 @@
 					"defaultUpdateMethod": "PUT"
 				}
 			},
-
+			"HolidayMDModel": {
+				"dataSource": "HolidayMDService",
+				"type": "sap.ui.model.odata.ODataModel",
+				"preload": true,
+				"settings": {
+					"useBatch": false,
+					"json": true,
+					"defaultBindingMode": "TwoWay",
+					"defaultUpdateMethod": "GET"
+				}
+			},
+			"ProvinceMDModel": {
+				"dataSource": "ProvinceMDService",
+				"type": "sap.ui.model.json.JSONModel",
+				"preload": true,
+				"settings": {
+					"useBatch": false,
+					"json": true,
+					"defaultBindingMode": "TwoWay",
+					"defaultUpdateMethod": "GET"
+				}
+			},
 			"config": {
 				"type": "sap.ui.model.json.JSONModel"
 			},

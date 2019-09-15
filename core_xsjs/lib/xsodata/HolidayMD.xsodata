@@ -1,0 +1,3 @@
+service {
+"HolidayMDView" as "HolidaysMD" key ("HOLIDAY_ID");
+}

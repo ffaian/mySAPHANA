@@ -1,43 +1,38 @@
 <mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:smartTable="sap.ui.comp.smarttable"
 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" controllerName="opensap.odataBasic.controller.App" height="100%">
-	<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="Holidays">
-		<smartFilterBar:controlConfiguration>
-			<smartFilterBar:ControlConfiguration key="DATE" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"></smartFilterBar:ControlConfiguration>
-		</smartFilterBar:controlConfiguration>
-	</smartFilterBar:SmartFilterBar>
 	<Page title="{i18n>appTitle}">
 		<content>
 			<ScrollContainer height="100%" width="100%" horizontal="true" vertical="true">
 				<VBox fitContainer="true">
+					<smartFilterBar:SmartFilterBar id="smartFilterBar" entityType="HolidaysType">
+						<smartFilterBar:controlConfiguration>
+							<smartFilterBar:ControlConfiguration key="DATE" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"></smartFilterBar:ControlConfiguration>
+						</smartFilterBar:controlConfiguration>
+					</smartFilterBar:SmartFilterBar>
 					<smartTable:SmartTable id="holidayTable" header="{i18n>UList}" editable="false" entitySet="Holidays" showRowCount="true"
 						requestAtLeastFields="DATE,PROVINCE,HOLIDAY_ID" enableAutoBinding="true" showFullScreenButton="true" tableType="ResponsiveTable"
-						seTablePersonalisation="true" smartFilterId="smartFilterBar">
-						<smartTable:customToolbar>
-							<OverflowToolbar design="Transparent">
-								<ToolbarSpacer/>
-								<OverflowToolbarButton text="Test"/>
-								<Button icon="sap-icon://add" text="Create" press="onSort"/>
-								<Button text="Edit" icon="sap-icon://edit"/>
-								<Button text="Delete" icon="sap-icon://delete"/>
-								<ToolbarSpacer/>
-								<Label text="Searching by:"/>
-								<ComboBox xmlns="sap.m" id="mySearchCombo" selectedKey="1">
-									<items>
-										<core:Item xmlns:core="sap.ui.core" key="1" text="by Date" id="Date"/>
-										<core:Item xmlns:core="sap.ui.core" key="2" text="by Province" id="Province"/>
-										<core:Item xmlns:core="sap.ui.core" key="3" text="by Holiday ID" id="Holiday"/>
-									</items>
-								</ComboBox>
-								<Label/>
-								<SearchField width="300px" placeholder="Search" showRefreshButton="true" tooltip="Search by selected attribute" liveChange='onLiveSearch'/>
-								<ToolbarSpacer/>
-								<OverflowToolbarButton icon="sap-icon://sort" text="Sort" press="onSort"/>
-								<OverflowToolbarButton icon="sap-icon://filter" text="Filter" press="onFilter"/>
-								<OverflowToolbarButton icon="sap-icon://group-2" text="Group" press="onGroup"/>
-								<OverflowToolbarButton icon="sap-icon://action-settings" text="Columns" press="onColumns"/>
-							</OverflowToolbar>
-						</smartTable:customToolbar>
+						smartFilterId="smartFilterBar">
 						<Table>
+							<headerToolbar>
+								<Toolbar>
+									<content>
+										<Button text="Create" type="Transparent" icon="sap-icon://add"/>
+										<Button text="Edit" type="Transparent" icon="sap-icon://edit"/>
+										<Button text="Delete" type="Transparent" icon="sap-icon://delete"/>
+										<ToolbarSpacer/>
+										<Label text="Searching by:"/>
+										<ComboBox xmlns="sap.m" id="mySearchCombo" selectedKey="1">
+											<items>
+												<core:Item xmlns:core="sap.ui.core" key="1" text="by Date" id="Date"/>
+												<core:Item xmlns:core="sap.ui.core" key="2" text="by Province" id="Province"/>
+												<core:Item xmlns:core="sap.ui.core" key="3" text="by Holiday ID" id="Holiday"/>
+											</items>
+										</ComboBox>
+										<Label/>
+										<SearchField width="300px" placeholder="Search" showRefreshButton="true" tooltip="Search by selected attribute" liveChange='onLiveSearch'/>
+									</content>
+								</Toolbar>
+							</headerToolbar>
 							<columns>
 								<Column id="DATE">
 									<customData>

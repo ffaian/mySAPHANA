@@ -36,6 +36,9 @@
 	</script>
 	<script type="text/javascript" src="../commons/startup.js"></script>
 	<script>
+	// Register LibraryApp (to be able to access the functions in Component sap.ui.define)
+		jQuery.sap.registerModulePath("sapui5.libraryApp.commons", "../commons");
+		
 		localShellStartup("opensap.odataBasic");
 	</script>
 </head>

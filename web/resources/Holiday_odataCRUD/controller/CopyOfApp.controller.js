@@ -25,23 +25,42 @@ sap.ui.define([
 			var oTable = this.getView().byId("holidayTable");
 			oTable.setModel(HolidayModel);
 
+			// //Holidays JSON Query
+			// var oModel_Holidays = new JSONModel();
+			// oModel_Holidays.loadData(
+			// 	"../xsodata/HolidayMD.xsodata", "GET", false);
+
 			// Holiday Master Data
 			var oModel_Holidays = this.getOwnerComponent().getModel("HolidayMDModel");
 
+			// var oSearchTable = sap.ui.getCore().byId("searchTableId");
+			// var oModel = this.getOwnerComponent().getModel("HolidayMD");
 			var oModelJson = new JSONModel();
-			// Read Entity Set from oData Model
 			oModel_Holidays.read("/HolidaysMD", {
 				success: function (oData, response) {
-					// Set Json Model of results from the Entity Set 
 					oModelJson.setData(oData);
+					// oModelJson.setData( {HolidaysMD: oData});
+					// var oRow = new sap.m.ColumnListItem({
+					// 	cells: [
+					// 		new sap.m.Text({
+					// 			text: "{Name1}"
+					// 		}),
+					// 		new sap.m.Text({
+					// 			text: "{Werks}"
+					// 		})
+					// 	]
+					// });
+					// oSearchTable.setModel(oModelJson);
+					// oSearchTable.bindItems("/results", oRow);
+					//sap.ui.getCore().setModel(oModelJson, "oJSONModel");
 				}
 			});
 
 			this.oHolidayCombo = new sap.m.ComboBox("myHolidayCombo");
 			this.oHolidayCombo.setModel(oModelJson); // lookup_tables
 			this.oHolidayCombo.bindAggregation("items", {
-				// "results" is always the entity set from JSON Model of the oData service Read function
-				path: "/results",
+				// path: "/HolidaysMD",
+				path: "/results",				
 				template: new sap.ui.core.ListItem({
 					key: "{HOLIDAY_ID}",
 					text: "{HOLIDAY_TXT}"
@@ -49,62 +68,54 @@ sap.ui.define([
 			});
 			this.oHolidayCombo.attachChange(this.onCheckComboBox, this);
 
-			// Province Master Data
-			var oModel_Provinces = this.getOwnerComponent().getModel("ProvinceMDModel");
-			oModel_Provinces.attachRequestCompleted(function () {
-				// console.log(oModel_Provinces.getData());
-			});
-
-			// Province ComboBox
-			this.oProvincescombo = new sap.m.ComboBox("myProvinceCombo", {});
-			this.oProvincescombo.setModel(oModel_Provinces); // lookup_tables
-			this.oProvincescombo.bindAggregation("items", {
-				path: "/Province",
-				template: new sap.ui.core.ListItem({
-					key: "{REGION}",
-					text: "{TXTSH}"
-				})
-			});
-			this.oProvincescombo.attachChange(this.onCheckComboBox, this);
-
-		},
-
-		onSort: function () {
-			// var oSmartTable = this._getSmartTable();
-			var oSmartTable = this.oTable = sap.ui.getCore().byId(this.getView().sId + "--holidayTable");
-			if (oSmartTable) {
-				oSmartTable.openPersonalisationDialog("Sort");
-			}
-		},
-
-		onLiveSearch: function (oEvent) {
-			if (oEvent.getParameters().refreshButtonPressed) {} else {
-				var tpmla = oEvent.getParameter("newValue");
-				var filters = new Array();
-				// var sSearchID = sap.ui.getCore().byId("mySearchCombo").getSelectedKey();
-				var sSearchID = sap.ui.getCore().byId(this.getView().sId + "--mySearchCombo").getSelectedKey();
-				switch (sSearchID) {
-				case "1":
-					var oFilter = new sap.ui.model.Filter("DATE",
-						sap.ui.model.FilterOperator.Contains, tpmla);
-					break;
-				case "2":
-					var oFilter = new sap.ui.model.Filter("PROVINCE",
-						sap.ui.model.FilterOperator.Contains, tpmla);
-					break;
-				case "3":
-					var oFilter = new sap.ui.model.Filter("HOLIDAY_ID",
-						sap.ui.model.FilterOperator.Contains, tpmla);
-					break;
-
+			/*var sPath = "/HolidaysMD";
+			oModel_Holidays.read(sPath, {
+				urlParameters: {
+					"$top": 13
+				},
+				success: function (oData, oResponse) {
+					console.log("Success!");
 				}
-				filters.push(oFilter);
+			});*/
 
-				// get list created in view
-				// this.oTable = sap.ui.getCore().byId("mytable");
-				this.oTable = sap.ui.getCore().byId(this.getView().sId + "--holidayTable");
-				this.oTable.getBinding("items").filter(filters);
-			}
+			// oModel_Holidays.metadataLoaded().then(function (oEvent) {
+			// 	/* TODO: add the event handling here! */
+			// 	var oMetadata = oModel_Holidays.getServiceMetadata();
+
+			// 	var oData = oModel_Holidays.read(
+			// 		"/HolidaysMD",
+			// 		function (oData2, oResponse) {
+			// 			console.log("Success!");
+			// 		},
+			// 		function (oError) {
+			// 			console.log("Error!");
+			// 		}
+			// 	);
+
+			// 	sap.m.MessageToast.show("Holiday MD Data Ready!");
+			// });
+
+			// oModel_Holidays.attachRequestCompleted(function (oEvent) {
+
+			// 	// request completed
+			// 	// check oEvent.getParameters("success") ...
+			// 	// ... whether the request was successful and the data was loaded
+			// 	var oMetadata = oModel_Holidays.getServiceMetadata();
+			// 	sap.m.MessageToast.show("Holiday MD Data Ready!");
+			// 	// 	// console.log(oMetadata);
+
+			// });
+
+			// var oData = oModel_Holidays.read(
+			// 	"/HolidaysMD",
+			// 	function (oData2, oResponse) {
+			// 		console.log("Success!");
+			// 	},
+			// 	function (oError) {
+			// 		console.log("Error!");
+			// 	}
+			// );
+
 		},
 
 		callUserService: function () {
