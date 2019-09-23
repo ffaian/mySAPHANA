@@ -1,3 +1,6 @@
 service {
 "HolidayView" as "Holidays" key ("DATE", "PROVINCE");
 }
+annotations {
+   enable OData4SAP;
+}

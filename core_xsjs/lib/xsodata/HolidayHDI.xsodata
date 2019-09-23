@@ -1,0 +1,3 @@
+service {
+"Holiday.Holidays" as "Holidays" key ("DATE", "PROVINCE");
+}

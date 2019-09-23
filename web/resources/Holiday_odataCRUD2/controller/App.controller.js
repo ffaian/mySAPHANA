@@ -23,7 +23,27 @@ sap.ui.define([
 			var HolidayModel =
 				this.getOwnerComponent().getModel("HolidayModel");
 			var oTable = this.getView().byId("holidayTable");
-			oTable.setModel(HolidayModel);
+			// oTable.setModel(HolidayModel);
+
+			function fnLoadMetadata() {
+				try {
+					oTable.setModel(HolidayModel);
+					oTable.setEntitySet("Holidays");
+					var oMeta = HolidayModel.getServiceMetadata();
+					var headerFields = "";
+					for (var i = 0; i < oMeta.dataServices.schema[0].entityType[0].property.length; i++) {
+						var property = oMeta.dataServices.schema[0].entityType[0].property[i];
+						headerFields += property.name + ",";
+					}
+					oTable.setInitiallyVisibleFields(headerFields);
+				} catch (e) {
+					console.log(e.toString());
+				}
+			}
+			HolidayModel.attachMetadataLoaded(HolidayModel, function () {
+				fnLoadMetadata();
+			});
+			fnLoadMetadata();
 
 			// Holiday Master Data
 			var oModel_Holidays = this.getOwnerComponent().getModel("HolidayMDModel");
@@ -87,7 +107,9 @@ sap.ui.define([
 			var sSearchID = sap.ui.getCore().byId(this.getView().sId + "--mySearchCombo").getSelectedKey();
 			switch (sSearchID) {
 			case "1":
-				var oDateFormat = sap.ui.core.format.DateFormat.getInstance({pattern: "MMM-dd-YYYY"});
+				var oDateFormat = sap.ui.core.format.DateFormat.getInstance({
+					pattern: "MMM-dd-YYYY"
+				});
 				oDateFormat.format(new Date(tpmla));
 				this.oFilterLive = new sap.ui.model.Filter("DATE",
 					sap.ui.model.FilterOperator.EQ, oDateFormat);

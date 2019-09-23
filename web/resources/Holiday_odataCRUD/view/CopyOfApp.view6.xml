@@ -1,23 +1,21 @@
 <mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:smartTable="sap.ui.comp.smarttable"
-	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" controllerName="opensap.odataBasic.controller.App" height="100%">
-	<App id="app">
-		<pages>
-			<Page title="{i18n>appTitle}" class="sapUiResponsiveContentPadding">
-				<content>
-					<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="Holidays" persistencyKey="SmartFilter_Explored">
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"  
+	controllerName="opensap.odataBasic.controller.App" height="100%"
+	xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:smartVariantManagement="sap.ui.comp.smartvariants"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Page title="{i18n>appTitle}">
+		<content>
+			<ScrollContainer height="100%" width="100%" horizontal="true" vertical="true">
+				<VBox fitContainer="true">
+					<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="Holidays">
 						<smartFilterBar:controlConfiguration>
-							<smartFilterBar:ControlConfiguration key="PROVINCE">
-								<smartFilterBar:defaultFilterValues>
-									<smartFilterBar:SelectOption low="ON"></smartFilterBar:SelectOption>
-								</smartFilterBar:defaultFilterValues>
-							</smartFilterBar:ControlConfiguration>
+							<smartFilterBar:ControlConfiguration key="DATE" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"></smartFilterBar:ControlConfiguration>
 						</smartFilterBar:controlConfiguration>
-						<smartFilterBar:layoutData>
-							<FlexItemData shrinkFactor="0"/>
-						</smartFilterBar:layoutData>
 					</smartFilterBar:SmartFilterBar>
-					<smartTable:SmartTable id="holidayTable" beforeRebindTable="onBeforeRebindTable" header="{i18n>UList}" editable="false" entitySet="Holidays"
-						showRowCount="true" enableAutoBinding="true" showFullScreenButton="true" tableType="ResponsiveTable" smartFilterId="smartFilterBar">
+					<smartTable:SmartTable id="holidayTable" header="{i18n>UList}" editable="false" entitySet="Holidays" showRowCount="true"
+						requestAtLeastFields="DATE,PROVINCE,HOLIDAY_ID" enableAutoBinding="true" customData:useSmartField="true" showFullScreenButton="true"
+						tableType="ResponsiveTable" smartFilterId="smartFilterBar">
 						<smartTable:customToolbar>
 							<OverflowToolbar design="Transparent">
 								<ToolbarSpacer/>
@@ -27,9 +25,9 @@
 								<Button text="Delete" icon="sap-icon://delete"/>
 								<ToolbarSpacer/>
 								<Label text="Searching by:"/>
-								<ComboBox xmlns="sap.m" id="mySearchCombo" selectedKey="2">
+								<ComboBox xmlns="sap.m" id="mySearchCombo" selectedKey="1">
 									<items>
-										<!--<core:Item xmlns:core="sap.ui.core" key="1" text="by Date" id="Date"/>-->
+										<core:Item xmlns:core="sap.ui.core" key="1" text="by Date" id="Date"/>
 										<core:Item xmlns:core="sap.ui.core" key="2" text="by Province" id="Province"/>
 										<core:Item xmlns:core="sap.ui.core" key="3" text="by Holiday ID" id="Holiday"/>
 									</items>
@@ -47,15 +45,13 @@
 							<columns>
 								<Column id="DATE">
 									<customData>
-										<core:CustomData key="p13nData"
-											value='\{"columnKey": "DATE", "leadingProperty": "DATE", "sortProperty": "DATE", "filterProperty": "DATE", "type" : "date", "columnIndex":"1"}'/>
+										<core:CustomData key="p13nData" value='\{"columnKey": "DATE", "leadingProperty": "DATE", "sortProperty": "DATE", "filterProperty": "DATE", "columnIndex":"1"}'/>
 									</customData>
 									<Text text="{i18n>DateId}"/>
 								</Column>
 								<Column id="PROVINCE">
 									<customData>
-										<core:CustomData key="p13nData"
-											value='\{"columnKey": "PROVINCE", "leadingProperty": "PROVINCE", "filterProperty": "PROVINCE", "maxLength": "40", "type":"string", "columnIndex":"2"}'/>
+										<core:CustomData key="p13nData" value='\{"columnKey": "PROVINCE", "leadingProperty": "PROVINCE", "maxLength": "40","columnIndex":"2"}'/>
 									</customData>
 									<Text text="{i18n>ProvinceId}"/>
 								</Column>
@@ -77,8 +73,8 @@
 							</items>
 						</Table>
 					</smartTable:SmartTable>
-				</content>
-			</Page>
-		</pages>
-	</App>
+				</VBox>
+			</ScrollContainer>
+		</content>
+	</Page>
 </mvc:View>

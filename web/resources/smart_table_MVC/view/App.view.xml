@@ -1,0 +1,9 @@
+<mvc:View
+   controllerName="sap.anz.mvc.controller.App"
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+   xmlns:mvc="sap.ui.core.mvc"
+   displayBlock="true">
+   <!-- use App for proper headers and navigation -->
+   <App id="app"/>
+</mvc:View>

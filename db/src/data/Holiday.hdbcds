@@ -1,0 +1,7 @@
+context Holiday {
+    entity Holidays {
+        key DATE  : LocalDate;
+        key PROVINCE : String(2);
+            HOLIDAY_ID : String(2);
+    };
+};

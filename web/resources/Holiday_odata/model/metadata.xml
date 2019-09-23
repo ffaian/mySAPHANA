@@ -1,0 +1,20 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+		<Schema xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+			xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm"
+			Namespace="default">
+			<EntityType Name="HolidaysType">
+				<Key>
+					<PropertyRef Name="DATE"/>
+					<PropertyRef Name="PROVINCE"/>
+				</Key>
+				<Property Name="DATE" Type="Edm.DateTime" Nullable="false"/>
+				<Property Name="PROVINCE" Type="Edm.String" Nullable="false" MaxLength="2"/>
+				<Property Name="HOLIDAY_ID" Type="Edm.String" MaxLength="2"/>
+			</EntityType>
+			<EntityContainer Name="v2" m:IsDefaultEntityContainer="true">
+				<EntitySet Name="Holidays" EntityType="default.HolidaysType"/>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

@@ -11,10 +11,10 @@ sap.ui.define([
 		 */
 		myDate: SimpleType.extend("control.tables.myDate", {
 			formatValue: function (oValue) {
-				//        	   var oDateFormat = sap.ui.core.format.DateFormat.getInstance({pattern: "MMM-dd-YYYY"});
-				//        	   var oDateRow = oDateFormat.format(new Date(oValue));
-				//        	   return oDateFormat.format(new Date(oValue));
-				return oValue;
+				        	   var oDateFormat = sap.ui.core.format.DateFormat.getInstance({pattern: "MMM-dd-YYYY"});
+				        	   //var oDateRow = oDateFormat.format(new Date(oValue));
+				        	   return oDateFormat.format(new Date(oValue));
+				//return oValue;
 			},
 			parseValue: function (oValue) {
 				//         	   	var oDateFormat = sap.ui.core.format.DateFormat.getInstance({pattern: "yyyy-MM-dd"});
