@@ -32,7 +32,8 @@ sap.ui.define([], function() {
 		formatProvince : function(sProvince) {
 			var oProvinceComboBox = sap.ui.getCore().byId("myProvinceCombo");
 			var oData = oProvinceComboBox.getModel().getData();
-			var result = jQuery.grep(oData.Province, function(e) {
+			var result = jQuery.grep(oData.results, function(e) {
+			// var result = jQuery.grep(oData.Province, function(e) {
 				return e.REGION === sProvince;
 			});
 			if (result && result.length === 1) {

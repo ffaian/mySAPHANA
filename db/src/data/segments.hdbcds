@@ -1,19 +1,24 @@
 using holiday as T_HOLIDAY;
 using holiday_id as T_HOLIDAY_ID;
+using Province.Province_md as T_PROVINCE_ID;
 
 context segments {
     define view HolidayView as
         select from T_HOLIDAY as A
         join        T_HOLIDAY_ID as B on
             A.HOLIDAY_ID = B.HOLIDAY_ID
+        join        T_PROVINCE_ID as C on
+            A."PROVINCE" = C."Province"
         {
-            "A"."DATE",
-            "A"."PROVINCE",
-            "A"."HOLIDAY_ID"
-            // "B"."HOLIDAY_TXT"
+            A."DATE",
+            A."PROVINCE",
+            A."HOLIDAY_ID",
+            B."HOLIDAY_TXT",
+            C."Name"         as "PROVINCE_TXT"
         }
         where
-            "B"."LANGU" = 'EN';
+                B."LANGU"   = 'EN'
+            and C."Country" = 'CA';
 
     define view HolidayMD as
         select from T_HOLIDAY_ID as A
@@ -23,4 +28,13 @@ context segments {
         }
         where
             "A"."LANGU" = 'EN';
+
+    define view ProvinceMD as
+        select from T_PROVINCE_ID as A
+        {
+            "A"."Province" as "REGION",
+            "A"."Name"     as "TXTSH"
+        }
+        where
+            "A"."Country" = 'CA';
 };

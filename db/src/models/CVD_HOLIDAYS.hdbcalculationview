@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CVD_HOLIDAYS" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Holidays Calc. View"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="HolidayView">
+    <resourceUri>HolidayView</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="HolidayView">
+  <attributes>
+    <attribute id="DATE" order="1" semanticType="date" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Date"/>
+      <keyMapping columnObjectName="HolidayView" columnName="DATE"/>
+    </attribute>
+    <attribute id="PROVINCE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Province"/>
+      <keyMapping columnObjectName="HolidayView" columnName="PROVINCE"/>
+    </attribute>
+    <attribute id="HOLIDAY_ID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Holiday "/>
+      <keyMapping columnObjectName="HolidayView" columnName="HOLIDAY_ID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

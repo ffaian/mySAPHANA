@@ -1,0 +1,15 @@
+<Annotations Target="com.sap.mySAPHANA.example.services.Holiday" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+	<Annotation Term="com.sap.vocabularies.UI.v1.LineItem">
+		<Collection>
+			<Record Type="com.sap.vocabularies.UI.v1.DataField">
+				<PropertyValue Property="Value" Path="DATE"/>
+			</Record>
+			<Record Type="com.sap.vocabularies.UI.v1.DataField">
+				<PropertyValue Property="Value" Path="PROVINCE"/>
+			</Record>
+			<Record Type="com.sap.vocabularies.UI.v1.DataField">
+				<PropertyValue Property="Value" Path="HOLIDAY_ID"/>
+			</Record>
+		</Collection>
+	</Annotation>
+</Annotations>

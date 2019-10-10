@@ -1,0 +1,20 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" controllerName="opensap.odataBasic.controller.App" height="100%">
+	<Page title="{i18n>appTitle}">
+		<content>
+			<smartFilterBar:SmartFilterBar id="smartFilterBar" entityType="com.sap.mySAPHANA.example.services.Holidays_MDType" persistencyKey="SmartFilterPKey" 
+			considerSelectionVariants="true">
+				<smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration key="HOLIDAY_ID" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"></smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+			</smartFilterBar:SmartFilterBar>
+			<smartTable:SmartTable id="HolidayTable" header="{i18n>UList}" entitySet="Holidays" editable="false" showRowCount="true" enableAutoBinding="true"
+				showFullScreenButton="true" tableType="ResponsiveTable" smartFilterId="smartFilterBar" useVariantManagement="true"
+				useTablePersonalisation="true">
+				<smartTable:layoutData>
+					<FlexItemData growFactor="1" baseSize="0%"/>
+				</smartTable:layoutData>
+			</smartTable:SmartTable>
+		</content>
+	</Page>
+</mvc:View>

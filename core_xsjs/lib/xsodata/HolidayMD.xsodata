@@ -1,3 +1,4 @@
-service {
-"HolidayMDView" as "HolidaysMD" key ("HOLIDAY_ID");
+service namespace "com.sap.mySAPHANA.example.services" {
+"segments.HolidayMD" as "HolidaysMD" key ("HOLIDAY_ID");
+"segments.ProvinceMD" as "ProvinceMD" key ("PROVINCE_ID");
 }

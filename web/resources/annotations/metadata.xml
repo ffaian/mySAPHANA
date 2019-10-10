@@ -1,0 +1,39 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+		<Schema xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+			xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm"
+			Namespace="com.sap.mySAPHANA.example.services">
+			<EntityType Name="HolidaysType">
+				<Key>
+					<PropertyRef Name="DATE"/>
+					<PropertyRef Name="PROVINCE"/>
+				</Key>
+				<Property Name="DATE" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
+				<Property Name="PROVINCE" Type="Edm.String" Nullable="false" MaxLength="2"/>
+				<Property Name="HOLIDAY_ID" Type="Edm.String" MaxLength="2"/>
+			</EntityType>
+			<EntityType Name="Holidays_MDType">
+				<Key>
+					<PropertyRef Name="HOLIDAY_ID"/>
+				</Key>
+				<Property Name="HOLIDAY_ID" Type="Edm.String" Nullable="false" MaxLength="2"/>
+				<Property Name="HOLIDAY_TXT" Type="Edm.String" MaxLength="60"/>
+			</EntityType>
+			<EntityType Name="Province_MDType">
+				<Key>
+					<PropertyRef Name="REGION"/>
+				</Key>
+				<Property Name="REGION" Type="Edm.String" Nullable="false" MaxLength="3"/>
+				<Property Name="TXTSH" Type="Edm.String" MaxLength="60"/>
+			</EntityType>
+			<EntityContainer Name="v2" m:IsDefaultEntityContainer="true">
+				<EntitySet Name="Holidays" EntityType="com.sap.mySAPHANA.example.services.HolidaysType" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false"/>
+				<EntitySet Name="Holidays_MD" EntityType="com.sap.mySAPHANA.example.services.Holidays_MDType" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false"/>
+				<EntitySet Name="Province_MD" EntityType="com.sap.mySAPHANA.example.services.Province_MDType" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false"/>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

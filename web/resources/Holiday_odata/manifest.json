@@ -95,6 +95,17 @@
 					"json": true,
 					"defaultBindingMode": "TwoWay",
 					"defaultUpdateMethod": "PUT"
+				},
+				"annotations": [
+					"DetailViewAnnotations"
+				]
+			},
+
+			"DetailViewAnnotations": {
+				"uri": "/annotations/my_annotations.xml",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": "/annotations/my_annotations.xml"
 				}
 			},
 

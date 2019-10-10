@@ -1,5 +1,14 @@
-service {
+service namespace "com.sap.mySAPHANA.example.services" {
+
 "HolidayView" as "Holidays" key ("DATE", "PROVINCE");
+
+"segments.HolidayMD" as "Holidays_MD" key ("HOLIDAY_ID");
+
+"segments.ProvinceMD" as "Province_MD" key ("REGION");
+
+association "ToHolidays" principal  "Holidays"("HOLIDAY_ID")
+	multiplicity "1" dependent "Holidays_MD"("HOLIDAY_ID") multiplicity "*";
+
 }
 annotations {
    enable OData4SAP;

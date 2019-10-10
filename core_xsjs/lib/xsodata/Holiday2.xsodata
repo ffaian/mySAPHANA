@@ -1,0 +1,8 @@
+service namespace "com.sap.mySAPHANA2.example.services" {
+
+"CVD_HOLIDAYS" as "Holidays" key ("DATE", "PROVINCE");
+
+}
+annotations {
+   enable OData4SAP;
+}

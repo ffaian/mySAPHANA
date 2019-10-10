@@ -2,15 +2,14 @@
 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" controllerName="opensap.odataBasic.controller.App" height="100%">
 	<Page title="{i18n>appTitle}">
 		<content>
-			<smartFilterBar:SmartFilterBar id="smartFilterBar" entityType="default.HolidaysType" persistencyKey="SmartFilterPKey" 
-			considerSelectionVariants="true">
+			<smartFilterBar:SmartFilterBar id="smartFilterBar" entityType="default.HolidaysType" persistencyKey="SmartFilterPKey"
+				considerSelectionVariants="true">
 				<smartFilterBar:controlConfiguration>
 					<smartFilterBar:ControlConfiguration key="DATE" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"></smartFilterBar:ControlConfiguration>
 				</smartFilterBar:controlConfiguration>
 			</smartFilterBar:SmartFilterBar>
-			<smartTable:SmartTable id="HolidayTable" header="{i18n>UList}" entitySet="Holidays" editable="false" showRowCount="true" enableAutoBinding="true"
-				showFullScreenButton="true" tableType="ResponsiveTable" smartFilterId="smartFilterBar" useVariantManagement="true"
-				useTablePersonalisation="true">
+			<smartTable:SmartTable id="HolidayTable" header="{i18n>UList}" editable="false" showRowCount="true" enableAutoBinding="true"
+				showFullScreenButton="true" tableType="ResponsiveTable" smartFilterId="smartFilterBar">
 				<smartTable:layoutData>
 					<FlexItemData growFactor="1" baseSize="0%"/>
 				</smartTable:layoutData>

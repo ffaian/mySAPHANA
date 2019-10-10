@@ -20,9 +20,30 @@ sap.ui.define([
 			var oTable = this.getView().byId("HolidayTable");
 
 			//To-Do Bind Model to table
-			oTable.setModel(HolidayModel);
-			oTable.setEntitySet("Holidays");
-			oTable.setInitiallyVisibleFields("DATE,PROVINCE,HOLIDAY_ID");
+			// oTable.setModel(HolidayModel);
+			// oTable.setEntitySet("Holidays");
+			// oTable.setInitiallyVisibleFields("DATE,PROVINCE,HOLIDAY_ID");
+
+			function fnLoadMetadata() {
+				try {
+					oTable.setModel(HolidayModel);
+					oTable.setEntitySet("Holidays");
+					var oMeta = HolidayModel.getServiceMetadata();
+					var headerFields = "";
+					for (var i = 0; i < oMeta.dataServices.schema[0].entityType[0].property.length; i++) {
+						var property = oMeta.dataServices.schema[0].entityType[0].property[i];
+						headerFields += property.name + ",";
+					}
+					oTable.setInitiallyVisibleFields(headerFields);
+				} catch (e) {
+					console.log(e.toString());
+				}
+			}
+			HolidayModel.attachMetadataLoaded(HolidayModel, function () {
+				fnLoadMetadata();
+			});
+			fnLoadMetadata();
+
 		},
 
 		onErrorCall: function (oError) {

@@ -20,37 +20,18 @@ sap.ui.define([
 			var oConfig =
 				this.getOwnerComponent().getModel("config");
 			var userName = oConfig.getProperty("/UserName");
-			var HolidayModel =
+			var oHolidayModel =
 				this.getOwnerComponent().getModel("HolidayModel");
 			var oTable = this.getView().byId("holidayTable");
-			// oTable.setModel(HolidayModel);
-
-			function fnLoadMetadata() {
-				try {
-					oTable.setModel(HolidayModel);
-					oTable.setEntitySet("Holidays");
-					var oMeta = HolidayModel.getServiceMetadata();
-					var headerFields = "";
-					for (var i = 0; i < oMeta.dataServices.schema[0].entityType[0].property.length; i++) {
-						var property = oMeta.dataServices.schema[0].entityType[0].property[i];
-						headerFields += property.name + ",";
-					}
-					oTable.setInitiallyVisibleFields(headerFields);
-				} catch (e) {
-					console.log(e.toString());
-				}
-			}
-			HolidayModel.attachMetadataLoaded(HolidayModel, function () {
-				fnLoadMetadata();
-			});
-			fnLoadMetadata();
+			oTable.setModel(oHolidayModel);
 
 			// Holiday Master Data
-			var oModel_Holidays = this.getOwnerComponent().getModel("HolidayMDModel");
+			// var oModel_Holidays = this.getOwnerComponent().getModel("HolidayMDModel");
 
 			var oModelJson = new JSONModel();
 			// Read Entity Set from oData Model
-			oModel_Holidays.read("/HolidaysMD", {
+			oHolidayModel.read("/Holidays_MD", {
+				// oModel_Holidays.read("/HolidaysMD", {
 				async: true,
 				success: function (oData, response) {
 					// Set Json Model of results from the Entity Set 
@@ -71,16 +52,28 @@ sap.ui.define([
 			this.oHolidayCombo.attachChange(this.onCheckComboBox, this);
 
 			// Province Master Data
-			var oModel_Provinces = this.getOwnerComponent().getModel("ProvinceMDModel");
-			oModel_Provinces.attachRequestCompleted(function () {
-				// console.log(oModel_Provinces.getData());
+			var oModelProvince = new JSONModel();
+			// Read Entity Set from oData Model
+			oHolidayModel.read("/Province_MD", {
+				async: true,
+				success: function (oData, response) {
+					// Set Json Model of results from the Entity Set 
+					oModelProvince.setData(oData);
+				}
 			});
+			
+			// var oModel_Provinces = this.getOwnerComponent().getModel("ProvinceMDModel");
+			// oModel_Provinces.attachRequestCompleted(function () {
+				// console.log(oModel_Provinces.getData());
+			// });
 
 			// Province ComboBox
 			this.oProvincescombo = new sap.m.ComboBox("myProvinceCombo", {});
-			this.oProvincescombo.setModel(oModel_Provinces); // lookup_tables
+			this.oProvincescombo.setModel(oModelProvince); // lookup_tables
+			// this.oProvincescombo.setModel(oModel_Provinces); // lookup_tables
 			this.oProvincescombo.bindAggregation("items", {
-				path: "/Province",
+				path: "/results",
+				// path: "/Province",
 				template: new sap.ui.core.ListItem({
 					key: "{REGION}",
 					text: "{TXTSH}"

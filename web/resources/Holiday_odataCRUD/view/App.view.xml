@@ -4,17 +4,10 @@
 		<pages>
 			<Page title="{i18n>appTitle}" class="sapUiResponsiveContentPadding">
 				<content>
-					<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="Holidays" persistencyKey="SmartFilter_Explored">
+					<smartFilterBar:SmartFilterBar id="smartFilterBar" EntitySet="Holidays_MD">
 						<smartFilterBar:controlConfiguration>
-							<smartFilterBar:ControlConfiguration key="PROVINCE">
-								<smartFilterBar:defaultFilterValues>
-									<smartFilterBar:SelectOption low="ON"></smartFilterBar:SelectOption>
-								</smartFilterBar:defaultFilterValues>
-							</smartFilterBar:ControlConfiguration>
+							<smartFilterBar:ControlConfiguration key="HOLIDAY_ID" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"></smartFilterBar:ControlConfiguration>
 						</smartFilterBar:controlConfiguration>
-						<smartFilterBar:layoutData>
-							<FlexItemData shrinkFactor="0"/>
-						</smartFilterBar:layoutData>
 					</smartFilterBar:SmartFilterBar>
 					<smartTable:SmartTable id="holidayTable" beforeRebindTable="onBeforeRebindTable" header="{i18n>UList}" editable="false" entitySet="Holidays"
 						showRowCount="true" enableAutoBinding="true" showFullScreenButton="true" tableType="ResponsiveTable" smartFilterId="smartFilterBar">
@@ -48,7 +41,7 @@
 								<Column id="DATE">
 									<customData>
 										<core:CustomData key="p13nData"
-											value='\{"columnKey": "DATE", "leadingProperty": "DATE", "sortProperty": "DATE", "filterProperty": "DATE", "type" : "date", "columnIndex":"1"}'/>
+											value='\{"columnKey": "DATE", "leadingProperty": "DATE", "sortProperty": "DATE", "type" : "date", "columnIndex":"1"}'/>
 									</customData>
 									<Text text="{i18n>DateId}"/>
 								</Column>
